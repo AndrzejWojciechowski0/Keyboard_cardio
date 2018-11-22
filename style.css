@@ -3,21 +3,22 @@
 
 
 }
-.keyboard {
 
-
-
-
-}
 .keys {
-
+    display: flex;
+    justify-content: center;
+    
 
 
 
 }
 
 .key {
-
-
-    
+    background-color: crimson;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    border-radius: 100%;
 }
