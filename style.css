@@ -28,10 +28,22 @@ color: crimson;
 
 }
 body {
-background:url(https://www.publicdomainpictures.net/pictures/130000/nahled/black-and-white-weaving-background.jpg)
-
+background:url(https://www.publicdomainpictures.net/pictures/130000/nahled/black-and-white-weaving-background.jpg);
+font-family: 'VT323', monospace;
 }
 .container {
-color: crimson;
+color: red;
 font-size: 30px;
+}
+.correct-key-down {
+background-color: lawngreen;
+
+}
+.wrong-key-down {
+background-color: black;
+color: white;
+
+}
+.fire-key {
+background-color: darkorange;
 }
