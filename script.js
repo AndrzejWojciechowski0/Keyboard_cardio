@@ -62,7 +62,8 @@ if (event.keyCode == currentKey.attributes[0].value) {
    console.log(score);
 } else {
 score --;
-addClassToElement('.wrong-key-down', currentKey);
+let wrongKey = document.querySelector(`div[data-key="${e.keyCode}"]`)
+addClassToElement('.wrong-key-down', );
 console.log(score);
     }
     scoreBoard.innerHTML = `Score: ${score}`;
