@@ -2,6 +2,7 @@ const buttonsKey = document.getElementsByClassName('key');
 let lastKey;
 let currentKey;
 let score;
+let endScore = 2;
 let OffGame = false;
 
 function getRandomNumber(min, max) {
@@ -37,20 +38,37 @@ function endGame() {
 OffGame = true;
 };
 
+function showScore() {
+  menu = document.querySelector('.game-menu');
+//console.log(menu)
+menu.innerHTML = `<div class="scoreBoard">Score: ${score}</div>`;
+}
+
+
 function startGame() {
     score = 0;
+    showScore();
 window.addEventListener('keydown' , checkKey)
 peep();
 OffGame = false;
+scoreBoard = document.querySelector('.scoreBoard')
 };
 
 function checkKey(event) {
 console.log(currentKey);
 if (event.keyCode == currentKey.attributes[0].value) {
    score ++;
+   addClassToElement('.correct-key-down', currentKey);
    console.log(score);
 } else {
 score --;
+addClassToElement('.wrong-key-down', currentKey);
 console.log(score);
+    }
+    scoreBoard.innerHTML = `Score: ${score}`;
+    if (score == endScore){
+        endGame()
+
+
     }
 }
