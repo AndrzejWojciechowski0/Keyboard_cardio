@@ -21,55 +21,64 @@ function getRandomKey() {
 };
 
 
-function peep(){
-  const time = getRandomNumber(1000, 2000);
-  const key = getRandomKey();
-  key.classList.add('fire-key');
-  currentKey = key;
-  //console.log(currentKey.attributes[0].value)
+function peep() {
+    const time = getRandomNumber(1000, 2000);
+    const key = getRandomKey();
+    addClassToElement('fire-key', key);
+    currentKey = key;
+    // console.log(currentKey.attributes[0].value)
     setTimeout(() => {
-      key.classList.remove('fire-key');
-if (!OffGame) {peep()}; 
-}, time);
-
+        if (!OffGame) peep();
+    }, time);
 };
 
 function endGame() {
-OffGame = true;
+    OffGame = true;
 };
 
-function showScore() {
-  menu = document.querySelector('.game-menu');
-//console.log(menu)
-menu.innerHTML = `<div class="scoreBoard">Score: ${score}</div>`;
+function addClassToElement(clasName, element) {
+   element.classList.add(clasName);
+   const time = getRandomNumber(1000, 2000);
+   setTimeout(() => {
+  removeClassFromElement(clasName, element);
+
+   }, time);
 }
 
+function removeClassFromElement(clasName, element) {
+element.classList.remove(clasName);
+  }
+
+
+function showScore() {
+    menu = document.querySelector('.game-menu');
+    // console.log(menu)
+    menu.innerHTML = `<div class="scoreBoard">Score: ${score}</div>`; 
+}
 
 function startGame() {
     score = 0;
     showScore();
-window.addEventListener('keydown' , checkKey)
-peep();
-OffGame = false;
-scoreBoard = document.querySelector('.scoreBoard')
+    window.addEventListener('keydown', checkKey)
+    peep();
+    OffGame = false;
+    scoreBoard = document.querySelector('.scoreBoard')
 };
 
 function checkKey(event) {
-console.log(currentKey);
-if (event.keyCode == currentKey.attributes[0].value) {
-   score ++;
-   addClassToElement('.correct-key-down', currentKey);
-   console.log(score);
-} else {
-score --;
-let wrongKey = document.querySelector(`div[data-key="${e.keyCode}"]`)
-addClassToElement('.wrong-key-down', );
-console.log(score);
+    if (event.keyCode == currentKey.attributes[0].value) {
+        score ++;
+        removeClassFromElement('fire-key', currentKey);
+        addClassToElement('correct-key-down', currentKey);
+        console.log(score);
+    } else {
+        score --;
+        let wrongKey = document.querySelector(`div[data-key="${event.keyCode}"]`);
+        addClassToElement('wrong-key-down', wrongKey);
+        console.log(score);
     }
     scoreBoard.innerHTML = `Score: ${score}`;
-    if (score == endScore){
+    if (score == endScore) {
         endGame()
-
-
     }
 }
